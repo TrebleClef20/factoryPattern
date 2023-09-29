@@ -7,6 +7,7 @@ public class Clinic {
 
         Scanner scan = new Scanner(System.in);
 
+        String input = "";
         Integer choice = 0;
 
         while (choice != 3) {
@@ -14,7 +15,11 @@ public class Clinic {
             System.out.println("[2] Cat");
             System.out.println("[3] Exit");
             System.out.print("\nSelect a number: ");
-            choice = scan.nextInt();
+            if ((input = scan.nextLine().trim()).matches("\\d+")) {
+                choice = Integer.parseInt(input);
+            } else {
+                choice = 0;
+            }
 
             PetRecord petFile = new PetRecord();
             Pet pet;
@@ -35,10 +40,10 @@ public class Clinic {
                     ((Cat) pet).setNoOfLives(9);
                     break;
                 case 3:
-                    System.out.println("\nThank you and goodbye.");
+                    System.out.println("\nThank you and goodbye.\n");
                     return;
                 default:
-                    System.out.println("\nInvalid, try again");
+                    System.out.println("\nInvalid, try again.\n");
                     continue;
             }
 
